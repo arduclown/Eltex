@@ -1,0 +1,21 @@
+git config --global user.name arduclown
+git config --global user.email maridudkina.30@gmail.com
+ssh-keygen -t ed25519 -f ~/.ssh/arduclown
+gh auth login
+gh auth setup-git --hostname github.com
+gh auth status
+gh repo create --public Eltex
+scp ~/report_part1.txt root@172.16.9.189:/root/Eltex/module1/task1/
+git add .
+git status
+git commit (введите комментарий)
+git push
+mkdir ~/Eltex_clone && cd ~/Eltex_clone
+git clone https://github.com/arduclown/Eltex.git .
+cd ~/arduclown git add README.md
+git commit -m "Правки в README.md"
+git push origin main
+git fetch
+git log origin/main
+git diff main origin/main
+git merge
