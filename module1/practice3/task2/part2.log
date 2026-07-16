@@ -1,0 +1,19 @@
+chmod +x cuckoo.sh
+nohup ./cuckoo.sh > cuckoo.out 2>&1 &
+echo "test[$$]: how much time do I have?" > /tmp/run/cuckoo.pid
+read -r answer < /tmp/run/cuckoo.pid
+echo "$answer"
+kill -SIGTERM 9432
+touch template_task.sh
+chmod +x template_task.sh
+./template_task.sh 
+cp template_task.sh worker1.sh
+chmod +x worker1.sh
+nohup ./cuckoo.sh > cuckoo.out 2>&1 &
+./worker1.sh
+nohup ./cuckoo.sh > cuckoo.out 2>&1 &
+crontab -e
+ln -s template_task.sh task1.sh
+ln -s template_task.sh task2.sh
+ln -s template_task.sh task3.sh
+crontab -e

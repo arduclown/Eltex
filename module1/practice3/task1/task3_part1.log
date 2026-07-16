@@ -1,0 +1,18 @@
+su - user1
+ps -e -o pid,nlwp | awk '$2 > 1' | wc -l
+top
+passwd
+top
+vim ~/file_task3.txt
+ctrl+z
+sleep 600
+jobs
+bg
+pgrep sleep
+renice 10 -p 8780
+ps -o pid,ni,comm -p 8780
+fg %1
+kill -15 8780
+jobs
+trap 'echo "Меня голыми руками не возьмёшь\!"' SIGINT SIGQUIT
+ctrl+c 
