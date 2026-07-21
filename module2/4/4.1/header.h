@@ -15,6 +15,7 @@ typedef struct {
 } FullName;
 
 typedef struct {
+	unsigned int id;
 	FullName name;
 	char* workplace;
 	char* position;

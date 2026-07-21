@@ -24,6 +24,15 @@ static int compareContacts(const Contact* a, const Contact* b) {
     }
 }
 
+// пересчёт ID: после вставки или удаления контакты нумеруются заново с 0
+static void reindexContacts(Node* head) {
+    unsigned int id = 0;
+    while (head) {
+        head->contact.id = id++;
+        head = head->next;
+    }
+}
+
 void freeContact(Contact* contact) {
 	free(contact->name.lastName);
 	free(contact->name.firstName);
@@ -48,6 +57,9 @@ int addContact(Node** head, char* lastName, char* firstName,
 		char* socialLink, char* mesProfile){
     Node* newNode = malloc(sizeof(Node));
     if (!newNode) return -1;
+    newNode->next = NULL;
+    newNode->prev = NULL;
+    newNode->contact.id = 0;
 
 	newNode->contact.name.lastName = copyString(lastName ? lastName : "");
 	newNode->contact.name.firstName = copyString(firstName ? firstName : "");
@@ -62,6 +74,7 @@ int addContact(Node** head, char* lastName, char* firstName,
     // список пуст
     if (!*head){
         *head = newNode;
+        reindexContacts(*head);
         return 0;
     }
 
@@ -86,15 +99,15 @@ int addContact(Node** head, char* lastName, char* firstName,
         last->next = newNode;
         newNode->prev = last;
     }
+    reindexContacts(*head);
 	return 0;
 }
 
 int deleteContact(Node** head, unsigned int id) {
 	Node* cur = *head;
-    unsigned int index = 0;
 
     while(cur) {
-        if (index == id) {
+        if (cur->contact.id == id) {
             if (cur->prev)
                     cur->prev->next = cur->next;
                 else
@@ -103,10 +116,10 @@ int deleteContact(Node** head, unsigned int id) {
                     cur->next->prev = cur->prev;
                 freeContact(&cur->contact);
                 free(cur);
+                reindexContacts(*head);
                 return 0;
         }
         cur = cur->next;
-        index++;
 
     }
 	return -1;
@@ -118,10 +131,9 @@ int editeContact(Node** head, unsigned int id,
 		char* phone, char* email,
 		char* socialLink, char* mesProfile) {
     Node* cur = *head;
-    unsigned int index = 0;
 
     while (cur) {
-        if (index == id) {
+        if (cur->contact.id == id) {
             int lastNameChanged = (lastName && strlen(lastName) > 0 && strcmp(lastName, cur->contact.name.lastName)!=0);
             
             if (lastName && strlen(lastName) > 0){
@@ -186,10 +198,10 @@ int editeContact(Node** head, unsigned int id,
                 free(temp);
             }
 
+            reindexContacts(*head);
             return 0;
         }
         cur = cur->next;
-        index++;
     }
 	
 	return 0;
@@ -202,7 +214,6 @@ void printContactBook(const Node* head, char* output, int outputSize ) {
         return;
     }
     const Node* cur = head;
-    unsigned int id = 0;
     while (cur) {
         const Contact* c = &cur->contact;
         char buffer[1024];
@@ -218,7 +229,7 @@ void printContactBook(const Node* head, char* output, int outputSize ) {
                  "  Соцсети: %s\n"
                  "  Мессенджер: %s\n"
                  "--------------------\n",
-                 id,
+                 c->id,
                  c->name.lastName ? c->name.lastName : "(не указано)",
                  c->name.firstName ? c->name.firstName : "(не указано)",
                  c->name.surname ? c->name.surname : "(не указано)",
@@ -230,7 +241,6 @@ void printContactBook(const Node* head, char* output, int outputSize ) {
                  c->details.mesProfile ? c->details.mesProfile : "(не указано)");
         strncat(output, buffer, outputSize - strlen(output) - 1);
         cur = cur->next;
-        id++;
     }
 }
 
