@@ -1,0 +1,20 @@
+0,Иванов,Иван,Иванович,ООО Ромашка,Инженер,+79001112201,ivanov@mail.ru,vk.com/ivanov,@ivanov
+1,Петров,Пётр,Петрович,Яндекс,Разработчик,+79001112202,petrov@mail.ru,vk.com/petrov,@petrov
+2,Сидоров,Сидор,Сидорович,Сбербанк,Аналитик,+79001112203,sidorov@mail.ru,vk.com/sidorov,@sidorov
+3,Кузнецов,Алексей,Николаевич,ВТБ,Менеджер,+79001112204,kuznetsov@mail.ru,vk.com/kuznetsov,@kuznetsov
+4,Смирнов,Дмитрий,Сергеевич,МТС,Тестировщик,+79001112205,smirnov@mail.ru,vk.com/smirnov,@smirnov
+5,Попов,Андрей,Викторович,Ростелеком,Администратор,+79001112206,popov@mail.ru,vk.com/popov,@popov
+6,Волков,Максим,Олегович,Тинькофф,Дизайнер,+79001112207,volkov@mail.ru,vk.com/volkov,@volkov
+7,Соколов,Артём,Павлович,Мегафон,Инженер,+79001112208,sokolov@mail.ru,vk.com/sokolov,@sokolov
+8,Лебедев,Никита,Андреевич,Ozon,Разработчик,+79001112209,lebedev@mail.ru,vk.com/lebedev,@lebedev
+9,Козлов,Егор,Дмитриевич,Wildberries,Логист,+79001112210,kozlov@mail.ru,vk.com/kozlov,@kozlov
+10,Новиков,Илья,Александрович,Авито,Аналитик,+79001112211,novikov@mail.ru,vk.com/novikov,@novikov
+11,Морозов,Роман,Игоревич,Газпром,Инженер,+79001112212,morozov@mail.ru,vk.com/morozov,@morozov
+12,Павлов,Виктор,Романович,Лукойл,Геолог,+79001112213,pavlov@mail.ru,vk.com/pavlov,@pavlov
+13,Семёнов,Григорий,Фёдорович,Роснефть,Химик,+79001112214,semenov@mail.ru,vk.com/semenov,@semenov
+14,Голубев,Тимофей,Максимович,Аэрофлот,Пилот,+79001112215,golubev@mail.ru,vk.com/golubev,@golubev
+15,Виноградов,Кирилл,Антонович,РЖД,Диспетчер,+79001112216,vinogradov@mail.ru,vk.com/vinogradov,@vinogradov
+16,Богданов,Степан,Владимирович,Почта России,Курьер,+79001112217,bogdanov@mail.ru,vk.com/bogdanov,@bogdanov
+17,Воробьёв,Матвей,Денисович,Билайн,Инженер,+79001112218,vorobyov@mail.ru,vk.com/vorobyov,@vorobyov
+18,Фёдоров,Данила,Кириллович,Магнит,Логист,+79001112219,fedorov@mail.ru,vk.com/fedorov,@fedorov
+19,Михайлов,Глеб,Тимофеевич,Пятёрочка,Менеджер,+79001112220,mihailov@mail.ru,vk.com/mihailov,@mihailov
