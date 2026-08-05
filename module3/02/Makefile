@@ -1,0 +1,10 @@
+CC = gcc
+TARGET = pubsub
+
+all: $(TARGET)
+
+$(TARGET): main.c source.c header.h
+	$(CC) -Wall -g main.c source.c -o $(TARGET)
+
+clean:
+	rm -rf $(TARGET) $(TARGET).dSYM
