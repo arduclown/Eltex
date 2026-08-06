@@ -20,9 +20,10 @@ void runProducer(int semid, char* memory) {
     Head* head = (Head*)memory;
     Block* block;
     int* numbers;
-    int offset = FIRST; // куда положим следующий набор
-    int last = 0; // смещение последнего набора, 0 - наборов еще нет
-    int count, need, i, working;
+    long offset = FIRST; // куда положим следующий набор
+    long last = 0; // смещение последнего набора, 0 - наборов еще нет
+    long need;
+    int count, i, working;
 
     // чистим память
     lockMemory(semid);
@@ -50,7 +51,7 @@ void runProducer(int semid, char* memory) {
         if (last != 0) { // предыдущий набор теперь ссылается на новый
             ((Block*)(memory + last))->next = offset;
         }
-        printf("Производитель: набор из %d чисел по смещению %d\n", count, offset);
+        printf("Производитель: набор из %d чисел по смещению %ld\n", count, offset);
 
         last = offset;
         offset += need;
@@ -86,7 +87,8 @@ void runConsumer(int semid, char* memory) {
     Head* head = (Head*)memory;
     Block* block;
     int numbers[MAX_COUNT]; // копия набора, чтобы считать min и max без блокировки
-    int count, offset, done, min, max, i;
+    long offset;
+    int count, done, min, max, i;
 
     while (1) {
         count = 0;
@@ -108,7 +110,7 @@ void runConsumer(int semid, char* memory) {
         if (count == 0) { // необработанных наборов нет
             if (done)
                 break; // производитель закончил, работать больше не с чем
-            usleep(100);
+            sleep(1);
             continue;
         }
 
@@ -119,11 +121,12 @@ void runConsumer(int semid, char* memory) {
             if (numbers[i] > max)
                 max = numbers[i];
         }
-        printf("Потребитель %d: набор по смещению %d из %d чисел, min = %d, max = %d\n",
+        printf("Потребитель %d: набор по смещению %ld из %d чисел, min = %d, max = %d\n",
                getpid(), offset, count, min, max);
 
-        usleep(100); // после одного набора потребитель засыпает
+        usleep(10000); // после одного набора потребитель засыпает
     }
 
     printf("Потребитель %d: все наборы обработаны, завершение работы\n", getpid());
 }
+
