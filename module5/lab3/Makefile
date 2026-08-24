@@ -1,4 +1,4 @@
-obj-m += keyboard.o
+obj-m += LedKeyboard.o
 
 PWD := $(CURDIR)
 

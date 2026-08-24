@@ -84,6 +84,7 @@ static int __init kbleds_init(void)
         return -ENODEV;
     }
     my_driver = vc_cons[fg_console].d->port.tty->driver;
+    printk(KERN_INFO "kbleds: tty driver magic %d\n", my_driver->major);
     printk(KERN_INFO "kbleds: tty driver initialized\n");
 
     kbleds_kobject = kobject_create_and_add("kbleds", kernel_kobj);
